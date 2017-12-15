@@ -3,3 +3,6 @@ extends layout.pug
 block content
 		section#content
 			h2= title
+			a(href='/') Home
+			br
+			a(href=`/recipes/${category}/1`)= recipeName

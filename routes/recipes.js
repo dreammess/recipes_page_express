@@ -10,23 +10,29 @@ router.get('/', (req, res) => {
 
 router.get('/soups', (req, res) => {
 	res.locals.title = 'This is where the soups will go!';
+	res.locals.recipeName = 'Carrot Soup';
+	res.locals.category = 'Soups';
 	res.render('recipe_menu');
 });
 
 router.get('/soups/1', (req, res) => {
 	res.locals.title = 'This will be a carrot soup recipe';
+	res.locals.category = 'Soups';
 	res.render('recipe');
 });
 
 //Pasta
  
-router.get('/pasta', (req, res) => {
+router.get('/pastas', (req, res) => {
 	res.locals.title = 'This is where the pastas will go!';
+	res.locals.recipeName = 'Parsley-Lemon Pasta';
+	res.locals.category = 'Pastas';
 	res.render('recipe_menu');
 });
 
-router.get('/pasta/1', (req, res) => {
+router.get('/pastas/1', (req, res) => {
 	res.locals.title = 'This will be a parsley-lemon pasta recipe';
+	res.locals.category = 'Pastas';
 	res.render('recipe');
 });
 
