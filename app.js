@@ -4,38 +4,34 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
-const pierogi = {
-	title: "Lime-Beetroot Pierogi with Dill Yogurt Sauce",
-	header: "Instructions: ",
-	ingredients: [
-		"2 Beetroots", 
-		"1 Lime", 
-		"500ml Yogurt", 
-		"1 clove of garlic"],
-	instructions: [
-		"Cook the Beetroot",
-		"Make the pierogis",
-		"Make the sauce"
-	]
-}
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
+const mainRoutes = require('./routes');//Knows it's index
+const recipesRoutes = require('./routes/recipes');
+
+app.use(mainRoutes);
+app.use('/recipes', recipesRoutes);
 
 // Recipes
 
-app.get('/recipes', (req, res) => {
+//Pierogi
+
+app.get('/recipes/pierogi', (req, res) => {
 	res.render('recipes', { title: pierogi.title,
 						  header: pierogi.header,
 						  ingredients: pierogi.ingredients,
 						  instructions: pierogi.instructions});
 });
 
+
+// Error
+
 app.use((req, res, next) => {
-	const err = new Error('NOt Found');
+	const err = new Error('Not Found');
 	err.status = 404;
 	next(err);
 });
@@ -45,6 +41,8 @@ app.use((err, req, res, next) => {
 	res.status(err.status);
 	res.render('error');
 });
+
+//Localhost
 
 app.listen(3000, () => {
 	console.log('The application is running on localhost:3000!')
