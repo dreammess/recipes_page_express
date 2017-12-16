@@ -6,3 +6,11 @@ block content
 			a(href='/') Home
 			br
 			a(href=`/recipes/${category}`)= category
+
+			ul
+				each ingredient in ingredients
+					li= ingredient
+
+			ul
+				each instruction in instructions
+					li= instruction

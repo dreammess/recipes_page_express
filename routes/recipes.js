@@ -1,4 +1,5 @@
 const express = require('express');
+const { recipes } = require('../data/recipesData.json');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -6,34 +7,29 @@ router.get('/', (req, res) => {
 	res.render('recipes');
 });
 
-//Soups
+// Category Splash Page: Contains a list of recipes
+// belonging to the given category.
 
-router.get('/soups', (req, res) => {
-	res.locals.title = 'This is where the soups will go!';
-	res.locals.recipeName = 'Carrot Soup';
-	res.locals.category = 'Soups';
-	res.render('recipe_menu');
+router.get('/:category/', (req, res) => {
+	const category = req.params.category;
+	const items = recipes[category];
+	res.render('recipe_menu', {items, category});
 });
 
-router.get('/soups/1', (req, res) => {
-	res.locals.title = 'This will be a carrot soup recipe';
-	res.locals.category = 'Soups';
-	res.render('recipe');
-});
+// Recipe: individual recipe page.
 
-//Pasta
- 
-router.get('/pastas', (req, res) => {
-	res.locals.title = 'This is where the pastas will go!';
-	res.locals.recipeName = 'Parsley-Lemon Pasta';
-	res.locals.category = 'Pastas';
-	res.render('recipe_menu');
-});
+router.get('/:category/:id', (req, res) => {
+	const id = req.params.id;
+	const category = req.params.category;
+	const {title} = recipes[category][id];
+	const { ingredients } = recipes[category][id];
+	const { instructions } = recipes[category][id];
+	console.log(recipes[category][id].title);
 
-router.get('/pastas/1', (req, res) => {
-	res.locals.title = 'This will be a parsley-lemon pasta recipe';
-	res.locals.category = 'Pastas';
-	res.render('recipe');
+	// Values passed to the template
+	const templateData = { title, category, ingredients, instructions };
+
+	res.render('recipe', templateData);
 });
 
 

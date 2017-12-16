@@ -2,7 +2,10 @@ extends layout.pug
 
 block content
 		section#content
-			h2= title
+			h2= category
 			a(href='/') Home
 			br
-			a(href=`/recipes/${category}/1`)= recipeName
+			ul
+				each item, index in items
+					a(href=`/recipes/${category}/${index}`)= item.title
+					br
