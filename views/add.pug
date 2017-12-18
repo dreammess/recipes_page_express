@@ -1,5 +1,8 @@
 extends layout.pug
 
+block script
+  script(type="text/javascript", src='/static/javascript/form.js')
+
 block content
   .main.container
     .row
@@ -7,7 +10,7 @@ block content
         h1.display-4.m-b-2 Add Recipe:
 
         // add recipe form
-        form(method='POST' action='/recipes/add')
+        form#recipeForm(method='POST' action='/recipes/add' name="recipeForm" onsubmit="return validateForm()")
           div.form-group
             select(name="category")
               option(value='pierogi') Pierogi
@@ -15,10 +18,19 @@ block content
           div.form-group
             label(for='title') Title:
             input#email.form-control(type='text', placeholder='Yummy Recipe' name='title')
-          div.form-group
-            label(for='ingredients') Ingredients:
-            textarea#favoriteBook.form-control(placeholder='Add Your Ingredients' name='ingredients')
-          div.form-group
-            label(for='instructions') Instructions:
-            textarea#pw.form-control(placeholder='Add Your Instructions' name='instructions')
-          button.btn.btn-primary(type='submit') Add
+
+          //- Get an array of ingredients
+          div#add-ingredient
+            p#ingredient-btn.btn Add an ingredient
+            input#ingredient-input(placeholder="Add an ingredient here")
+            ul#ingredient-list
+            input#ingredient-form-input(name='ingredients' style="display: none;")
+
+          //- Get an array of instructions 
+          div#add-instruction
+            p#instruction-btn.btn Add an instruction
+            input#instruction-input(placeholder="Add an instruction here")
+            ul#instruction-list
+            input#instruction-form-input(name='instructions' style="display: none;")
+
+          input(type="button" onclick="validateForm()" value="Submit")

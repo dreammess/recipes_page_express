@@ -18,24 +18,26 @@ router.get('/add', (req, res) => {
 // Temp post method for adding data. Just using a flat file for now.
 
 router.post('/add', (req, res) => {
+
+	ingredients = JSON.parse(req.body.ingredients);
+	console.log(ingredients);
+	instructions = JSON.parse(req.body.instructions);
+	console.log(instructions);
+
 	let recipe = {};
 	recipe.title = req.body.title;
+	recipe.ingredients = ingredients;
+	recipe.instructions = instructions;
 
-	// Split the ingredients on either a new line or a comma,
-	// trim white space and add to array
-	recipe.ingredients = req.body.ingredients.split(/[\n,]/);
-	recipe.ingredients = recipe.ingredients.map(x => x.trim());
-	// Split the instructions on either a new line or a comma,
-	// trim white space and add to array
-	recipe.instructions = req.body.instructions.split(/[\n,]/);
-	recipe.instructions = recipe.instructions.map(x => x.trim());
-	
+	console.log(recipe);
+
 	data.recipes[req.body.category].push(recipe);
 	fs.writeFile("data/soups.txt", JSON.stringify(data, null, 2), 'utf-8', function (err) {
     	if (err) 
         	return console.log(err);
     	console.log('Wrote Hello World in file helloworld.txt, just check it');
 	});
+	
 	res.render('add');
 })
 
