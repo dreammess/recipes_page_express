@@ -4,7 +4,6 @@
 		"pierogi": [
 			{
 			"title": "Lime-Beetroot Pierogi with Dill Yogurt Sauce",
-			"header": "Instructions: ",
 			"ingredients": [
 				"2 Beetroots", 
 				"1 Lime", 
@@ -19,9 +18,7 @@
 		], 
 		"soups": [
 			{
-			"type": "Soup",
 			"title": "Tomato, Beetroots & Feta Soup",
-			"header": "Instructions: ",
 			"ingredients": [
 				"0.5kg Beetroots", 
 				"0.5ks Toms", 
@@ -38,9 +35,7 @@
 				"Enjoy!"
 			]},
 			{
-			"type": "Soup",
 			"title": "Carrot Soup",
-			"header": "Instructions: ",
 			"ingredients": [
 				"0.5kg Carrots", 
 				"0.5ks Toms", 

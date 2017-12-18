@@ -17,17 +17,6 @@ const recipesRoutes = require('./routes/recipes');
 app.use(mainRoutes);
 app.use('/recipes', recipesRoutes);
 
-// Recipes
-
-//Pierogi
-
-app.get('/recipes/pierogi', (req, res) => {
-	res.render('recipes', { title: pierogi.title,
-						  header: pierogi.header,
-						  ingredients: pierogi.ingredients,
-						  instructions: pierogi.instructions});
-});
-
 
 // Error
 
