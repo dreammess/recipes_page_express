@@ -1,12 +1,19 @@
 extends layout.pug
 
 block content
-	section#content
-
-		h2 Welcome to our page, full of bursting with flavour veggie recipes!
-
-		a(href='/recipes/pierogi') Pierogi
-		br
-		a(href='/recipes/soups') Soup
+	div.container.main.container.text-xs-center
+		div.row
+			div.col-xs-12
+				section#content
+					include includes/header.pug
+			div.row
+				div.col-xs-12.main_content
+					h2.welcome_header Welcome to our page, full of bursting with flavour veggie recipes!
+					h3.recipes_header Recipes:
+					a.btn-success-outline.btn-lg.buttons(href='/recipes/pierogi') Pierogi
+					a.btn-success-outline.btn-lg.buttons(href='/recipes/soups') Soups
+			div.row
+				div.col-xs-12
+					include includes/footer.pug
 
 

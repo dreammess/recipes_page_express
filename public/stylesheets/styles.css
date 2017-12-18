@@ -1,0 +1,45 @@
+/*font-family: 'Poiret One', cursive;
+font-family: 'Sacramento', cursive;
+font-family: 'Megrim', cursive;
+font-family: 'Tulpen One', cursive;
+*/
+body {
+	/*background: #35766a !important;*/
+	font-family: 'Poiret One', cursive;
+	color: #fff !important;
+}
+
+.main {
+	background: #172727;
+}
+
+.main_content {
+	margin-top: 70px;
+	margin-bottom: 70px;
+}
+
+.main_header {
+	margin-top: 70px;
+	font-family: 'Codystar', cursive;
+	font-size: 80px;
+	color: #f5f9ad;
+}
+
+.welcome_header {
+	font-family: 'Sacramento', cursive;
+	color: #ed7777;
+	font-size: 40px;
+}
+
+.recipes_header {
+	margin: 20px;
+	padding: 10px;
+	font-size: 40px;
+	font-family: 'Tulpen One', cursive;
+	color: #94c0cc;
+}
+
+.buttons {
+	padding: 10px;
+	margin: 10px;
+}

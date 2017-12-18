@@ -1,16 +1,19 @@
 extends layout.pug
 
 block content
-		section#content
-			h2= title
-			a(href='/') Home
-			br
-			a(href=`/recipes/${category}`)= category
+	div.container.main.container.text-xs-center
+		div.row
+			div.col-xs-12
+				section#content
+					h2= title
+					a(href='/') Home
+					br
+					a(href=`/recipes/${category}`)= category
 
-			ul
-				each ingredient in ingredients
-					li= ingredient
+					ul
+						each ingredient in ingredients
+							li= ingredient
 
-			ul
-				each instruction in instructions
-					li= instruction
+					ul
+						each instruction in instructions
+							li= instruction
