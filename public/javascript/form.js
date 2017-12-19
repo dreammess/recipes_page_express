@@ -26,17 +26,22 @@ let kraken = {
 		return instructions;
 	},
 	addInstruction: function(instruction) {
+		instructions.push(instruction);
 	},
-	removeInstruction: function() {
+	removeInstruction: function(instruction) {
+		instructions = instructions.filter(x => x !== instruction);
 	},
-	editInstruction: function() {
+	editInstruction: function(instruction, edit) {
+		instructions = instructions.map(x => (x == instruction) ? edit:x);
 	},
 };
 
 
 // View
+
 document.addEventListener('DOMContentLoaded', function() {
 
+// Ingredients
 
 	// Handle updating the ingredients
     var ingredientButton = document.getElementById('ingredient-btn');
@@ -44,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var ingredientInput = document.getElementById('ingredient-input');
 
 
-	function updateView() {
+	function updateIngredientView() {
 		// Clear list
 		ingredientList.innerHTML = "";
 		for (let i = 0; i < kraken.getIngredients().length; i++) {
@@ -63,30 +68,27 @@ document.addEventListener('DOMContentLoaded', function() {
 	ingredientButton.addEventListener('click', () => {
 		ingredient = ingredientInput.value;
 		kraken.addIngredient(ingredient);
-		updateView();
+		updateIngredientView();
 	});
 
 	ingredientInput.addEventListener('keyup', function (e) {
     	if (e.keyCode == 13) {
     		ingredient = ingredientInput.value;
        		kraken.addIngredient(ingredient);
-       		updateView();
+       		updateIngredientView();
     	}
 	});
 
 
-	// Delete item from view/model:
+	// Delete/Edit ingredient from view/model:
 	ingredientList.addEventListener('click', (e) => {
 
-		// TODO: this isn't particularly elegant :( Maybe there's a better
-		// way to get the ingredient text. Possibly mess around with the html
-		// a bit. Lots of possibities here :)
 		let li = event.target.parentNode;
 		var ingredient = li.textContent.replace("DeleteEdit", "");
 
 		if (e.target.className == 'delete-button') {
 			kraken.removeIngredient(ingredient);
-			updateView()
+			updateIngredientView()
 		} else if (e.target.className == 'edit-button') {
 			li.innerHTML = "<input class='save-edit' value='" +
 			ingredient + "'></input>";
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					// BUG: if 2 items are the same, it will change both!
 					var editedIngredient = e.target.value;
 					kraken.editIngredient(ingredient, editedIngredient);
-					updateView();
+					updateIngredientView();
 				}
 			});
 		} 
@@ -105,32 +107,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-	function arrayUpdate(myArray, input, list) {
-		var li = document.createElement('li');
-		myArray.push(input.value);
-		li.innerHTML = input.value + 
-		"<button type='button' class='delete-button'>Delete</button>" + 
-		"<button type='button' class='edit-button'>Edit</button>";
-		list.append(li);
-		input.value = "";
-	}
-
 	// Handle updating the instructions
 	var instructionButton = document.getElementById('instruction-btn');
 	var instructionList = document.getElementById('instruction-list');
 	var instructionInput = document.getElementById('instruction-input');
 
-	// Use the button(p tag) to accept input
+
+	function updateInstructionView() {
+		// Clear list
+		instructionList.innerHTML = "";
+		for (let i = 0; i < kraken.getInstructions().length; i++) {
+			// Update list to reflect new array
+			var li = document.createElement('li');
+			li.innerHTML = instructions[i] +
+			"<button type='button' class='delete-button'>Delete</button>" +
+			"<button type='button' class='edit-button'>Edit</button>";
+			instructionList.append(li);
+			instructionInput.value = "";
+		}
+	}
+
+	// Add items to view/model:
 	instructionButton.addEventListener('click', () => {
-		arrayUpdate(instructions, instructionInput, instructionList);
+		instruction = instructionInput.value;
+		kraken.addInstruction(instruction);
+		updateInstructionView();
 	});
 
-	// Use the enter key to accept input
 	instructionInput.addEventListener('keyup', function (e) {
     	if (e.keyCode == 13) {
-       		arrayUpdate(instructions, instructionInput, instructionList);
+    		instruction = instructionInput.value;
+       		kraken.addInstruction(instruction);
+       		updateInstructionView();
     	}
 	});
+
+
+	// Delete/edit instructions from view/model:
+	instructionList.addEventListener('click', (e) => {
+
+		let li = event.target.parentNode;
+		var instruction = li.textContent.replace("DeleteEdit", "");
+
+		if (e.target.className == 'delete-button') {
+			kraken.removeInstruction(instruction);
+			updateInstructionView()
+		} else if (e.target.className == 'edit-button') {
+			li.innerHTML = "<input class='save-edit' value='" +
+			instruction + "'></input>";
+			document.getElementsByClassName('save-edit')[0]
+			.addEventListener('keyup', (e) => {
+				if (e.keyCode == 13) {
+					// BUG: if 2 items are the same, it will change both!
+					var editedInstruction = e.target.value;
+					kraken.editInstruction(instruction, editedInstruction);
+					updateInstructionView();
+				}
+			});
+		} 
+	});
+
+
 
 }, false);
 
