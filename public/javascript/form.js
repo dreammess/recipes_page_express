@@ -1,18 +1,41 @@
+// Model
 let ingredients = [];
 let instructions = [];
 
 
+// Controller
+let kraken = {
 
+	// Ingredients:
+	getIngredients: function() {
+		return ingredients;
+	},
+	addIngredient: function(ingredient) {
+		ingredients.push(ingredient);
+	},
+	removeIngredient: function(ingredient) {
+		ingredients = ingredients.filter(x => x !== ingredient);
+	},
+	editIngredient: function(ingredient, edit) {
+		ingredients = ingredients.map(x => (x == ingredient) ? edit:x);
+	},
+
+
+	// Instructions:
+	getInstructions: function() {
+		return instructions;
+	},
+	addInstruction: function(instruction) {
+	},
+	removeInstruction: function() {
+	},
+	editInstruction: function() {
+	},
+};
+
+
+// View
 document.addEventListener('DOMContentLoaded', function() {
-
-	function arrayUpdate(myArray, input, list) {
-		var li = document.createElement('li');
-		myArray.push(input.value);
-		li.innerHTML = input.value + "<button type='button' class='delete-button'>Delete</button>" 
-		+ "<button type='button' class='edit-button'>Edit</button>";
-		list.append(li);
-		input.value = "";
-	}
 
 
 	// Handle updating the ingredients
@@ -20,41 +43,77 @@ document.addEventListener('DOMContentLoaded', function() {
 	var ingredientList = document.getElementById('ingredient-list');
 	var ingredientInput = document.getElementById('ingredient-input');
 
-	//Remove & Edit Button
 
+	function updateView() {
+		// Clear list
+		ingredientList.innerHTML = "";
+		for (let i = 0; i < kraken.getIngredients().length; i++) {
+			// Update list to reflect new array
+			var li = document.createElement('li');
+			li.innerHTML = ingredients[i] +
+			"<button type='button' class='delete-button'>Delete</button>" +
+			"<button type='button' class='edit-button'>Edit</button>";
+			ingredientList.append(li);
+			ingredientInput.value = "";
+		}
+	}
+
+
+	// Add items to view/model:
+	ingredientButton.addEventListener('click', () => {
+		ingredient = ingredientInput.value;
+		kraken.addIngredient(ingredient);
+		updateView();
+	});
+
+	ingredientInput.addEventListener('keyup', function (e) {
+    	if (e.keyCode == 13) {
+    		ingredient = ingredientInput.value;
+       		kraken.addIngredient(ingredient);
+       		updateView();
+    	}
+	});
+
+
+	// Delete item from view/model:
 	ingredientList.addEventListener('click', (e) => {
+
+		// TODO: this isn't particularly elegant :( Maybe there's a better
+		// way to get the ingredient text. Possibly mess around with the html
+		// a bit. Lots of possibities here :)
+		let li = event.target.parentNode;
+		var ingredient = li.textContent.replace("DeleteEdit", "");
+
 		if (e.target.className == 'delete-button') {
-			let li = event.target.parentNode;
-			ingredientList.removeChild(li);
-			var liText = li.textContent.replace("DeleteEdit", "");
-			ingredients = ingredients.filter(x => x !== liText);
+			kraken.removeIngredient(ingredient);
+			updateView()
 		} else if (e.target.className == 'edit-button') {
-			let li = event.target.parentNode;
-			var liText = li.textContent.replace("DeleteEdit", "");
-			li.innerHTML = "<input class='save-edit' value='" + liText + "'></input>";
-			document.getElementsByClassName('save-edit')[0].addEventListener('keyup', (e) => {
+			li.innerHTML = "<input class='save-edit' value='" +
+			ingredient + "'></input>";
+			document.getElementsByClassName('save-edit')[0]
+			.addEventListener('keyup', (e) => {
 				if (e.keyCode == 13) {
-					ingredients = ingredients.map(x => (x == liText) ? e.target.value:x);
-					console.log(e.target.value);
-					li.innerHTML = e.target.value +
-						"<button type='button' class='delete-button'>Delete</button>" +
-						"<button type='button' class='edit-button'>Edit</button>";
+					// BUG: if 2 items are the same, it will change both!
+					var editedIngredient = e.target.value;
+					kraken.editIngredient(ingredient, editedIngredient);
+					updateView();
 				}
 			});
 		} 
 	});
 
 
-	ingredientButton.addEventListener('click', () => {
-		arrayUpdate(ingredients, ingredientInput, ingredientList);
-	});
+///////////////////////////////////////////////////////////////////////////////
 
-	ingredientInput.addEventListener('keyup', function (e) {
-    	if (e.keyCode == 13) {
-       		arrayUpdate(ingredients, ingredientInput, ingredientList); 	
-    	}
-	});
-
+	function arrayUpdate(myArray, input, list) {
+		var li = document.createElement('li');
+		myArray.push(input.value);
+		li.innerHTML = input.value + 
+		"<button type='button' class='delete-button'>Delete</button>" + 
+		"<button type='button' class='edit-button'>Edit</button>";
+		list.append(li);
+		input.value = "";
+	}
 
 	// Handle updating the instructions
 	var instructionButton = document.getElementById('instruction-btn');
@@ -76,6 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 
+///////////////////////////////////////////////////////////////////////////////
+
+
 // Bad name as it is not actually validating the form,
 // but rather adding content to the invisible inputs.
 function validateForm() {
@@ -89,3 +151,33 @@ function validateForm() {
     //     return false;
     // }
 }
+
+
+
+
+
+
+//Remove & Edit Button
+
+	// ingredientList.addEventListener('click', (e) => {
+	// 	if (e.target.className == 'delete-button') {
+	// 		let li = event.target.parentNode;
+	// 		ingredientList.removeChild(li);
+	// 		var liText = li.textContent.replace("DeleteEdit", "");
+	// 		ingredients = ingredients.filter(x => x !== liText);
+	// 	} else if (e.target.className == 'edit-button') {
+	// 		let li = event.target.parentNode;
+	// 		var liText = li.textContent.replace("DeleteEdit", "");
+	// 		li.innerHTML = "<input class='save-edit' value='" + liText + "'></input>";
+	// 		document.getElementsByClassName('save-edit')[0].addEventListener('keyup', (e) => {
+	// 			if (e.keyCode == 13) {
+	// 				// BUG: if 2 items are the same, it will change both
+	// 				ingredients = ingredients.map(x => (x == liText) ? e.target.value:x);
+	// 				console.log(e.target.value);
+	// 				li.innerHTML = e.target.value +
+	// 					"<button type='button' class='delete-button'>Delete</button>" +
+	// 					"<button type='button' class='edit-button'>Edit</button>";
+	// 			}
+	// 		});
+	// 	} 
+	// });
