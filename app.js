@@ -1,9 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
+
+//mongoose connection
+mongoose.connect('mongodb://localhost:27017/the_mash');
+const db = mongoose.connection;
+
+//error mongo
+db.on('error', console.error.bind(console, 'connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());

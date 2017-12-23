@@ -1,57 +1,111 @@
-	
 {
-	"recipes" :{
-		"pierogi": [
-			{
-			"title": "Lime-Beetroot Pierogi with Dill Yogurt Sauce",
-			"ingredients": [
-				"2 Beetroots", 
-				"1 Lime", 
-				"500ml Yogurt", 
-				"1 clove of garlic"
-			],
-			"instructions": [
-				"Cook the Beetroot",
-				"Make the pierogis",
-				"Make the sauce"
-			]}
-		], 
-		"soups": [
-			{
-			"title": "Tomato, Beetroots & Feta Soup",
-			"ingredients": [
-				"0.5kg Beetroots", 
-				"0.5ks Toms", 
-				"1 Feta pack", 
-				"6 cloves of garlic",
-				"Bunch of thyme",
-				"Salt and Pepper"
-			],
-			"instructions": [
-				"Roast toms with garlic and thyme",
-				"Cut beets into cubes and cook until soft",
-				"Blend toms with beets",
-				"Season and pour into bowls adding feta at the end",
-				"Enjoy!"
-			]},
-			{
-			"title": "Carrot Soup",
-			"ingredients": [
-				"0.5kg Carrots", 
-				"0.5ks Toms", 
-				"1 Feta pack", 
-				"6 cloves of garlic",
-				"Bunch of thyme",
-				"Salt and Pepper"
-			],
-			"instructions": [
-				"Roast toms with garlic and thyme",
-				"Cut carrots into cubes and cook until soft",
-				"Blend toms with beets",
-				"Season and pour into bowls adding feta at the end",
-				"Enjoy!"
-			]}
-
-		]
-	}
+  "recipes": {
+    "pierogi": [
+      {
+        "title": "Lime-Beetroot Pierogi with Dill Yogurt Sauce",
+        "photo_url": "get a photo here...",
+        "rating": "3",
+        "prep_time": "40 min",
+        "cook_time": "10 min",
+        "ingredients": [
+          "2 Beetroots",
+          "1 Lime",
+          "500ml Yogurt",
+          "1 clove of garlic"
+        ],
+        "instructions": [
+          "Cook the Beetroot",
+          "Make the pierogis",
+          "Make the sauce"
+        ],
+        "description": "Delcious Polish Pierogis with a lime twist."
+      },
+      {
+        "title": "Roasted Aubergine Salad",
+        "photo_url": "get a photo here...",
+        "rating": "3",
+        "prep_time": "25 min",
+        "cook_time": "45 min",
+        "ingredients": [
+          "Aubergine",
+          "pomegranate",
+          "yogurt",
+          "saffron",
+          "basil",
+          "mint",
+          "pinenuts"
+        ],
+        "instructions": [
+          "Roast Aubergine",
+          "Mix Saffron and yogurt",
+          "Combine into salad"
+        ],
+        "description": "Rosted Middle-Eastern goodness."
+      }
+    ],
+    "soups": [
+      {
+        "title": "Tomato, Beetroots & Feta Soup",
+        "photo_url": "get a photo here...",
+        "rating": "3",
+        "prep_time": "40 min",
+        "cook_time": "1h 30min",
+        "ingredients": [
+          "0.5kg Beetroots",
+          "0.5ks Toms",
+          "1 Feta pack",
+          "6 cloves of garlic",
+          "Bunch of thyme",
+          "Salt and Pepper"
+        ],
+        "instructions": [
+          "Roast toms with garlic and thyme",
+          "Cut beets into cubes and cook until soft",
+          "Blend toms with beets",
+          "Season and pour into bowls adding feta at the end",
+          "Enjoy!"
+        ],
+        "description": "Flavour concentration all the way!"
+      },
+      {
+        "title": "Carrot Soup",
+        "photo_url": "get a photo here...",
+        "rating": "3",
+        "prep_time": "30 min",
+        "cook_time": "40 min",
+        "ingredients": [
+          "0.5kg Carrots",
+          "0.5ks Toms",
+          "1 Feta pack",
+          "6 cloves of garlic",
+          "Bunch of thyme",
+          "Salt and Pepper"
+        ],
+        "instructions": [
+          "Roast toms with garlic and thyme",
+          "Cut carrots into cubes and cook until soft",
+          "Blend toms with beets",
+          "Season and pour into bowls adding feta at the end",
+          "Enjoy!"
+        ],
+        "description": "Carroty goodie."
+      }
+    ],
+    "cakes": [
+      {
+        "title": "Christmas Cake",
+        "photo_url": "get a photo here...",
+        "rating": "3",
+        "prep_time": "40 min",
+        "cook_time": "45 min",
+        "ingredients": [
+          "sugar"
+        ],
+        "instructions": [
+          "Eat the cake"
+        ],
+        "description": "Layers, tasty, tasty layers!"
+      }
+    ]
+  }
 }

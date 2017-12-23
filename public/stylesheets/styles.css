@@ -7,6 +7,7 @@ body {
 	/*background: #35766a !important;*/
 	font-family: 'Poiret One', cursive;
 	color: #aaa !important;
+	font-size: 25px;;
 }
 
 .main {
@@ -39,7 +40,35 @@ body {
 	color: #94c0cc;
 }
 
+.ingredients-header,
+.instructions-header {
+	font-family: 'Sacramento', cursive;
+	color: #ed7777;
+	font-size: 40px;
+}
+
 .buttons {
 	padding: 10px;
 	margin: 10px;
+}
+
+.list-style {
+	list-style: none;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.display-inline {
+	display: inline;
+    vertical-align: top;
+    line-height: 28px;
+}
+
+.col-xs-4 {
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
+
+.redirect {
+	margin-left: 20px;
 }

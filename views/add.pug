@@ -9,7 +9,7 @@ block content
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2 Add Recipe:
 
-        // add recipe form
+        //- Add recipe form
         form#recipeForm(method='POST' action='/recipes/add' name="recipeForm" onsubmit="return validateForm()")
           div.form-group
             select(name="category")
@@ -18,6 +18,9 @@ block content
           div.form-group
             label(for='title') Title:
             input#email.form-control(type='text', placeholder='Yummy Recipe' name='title')
+          div.form-group
+            label(for='rating') Rating:
+            input#email.form-control(type='text', placeholder='Your rating' name='rating')
 
           //- Get an array of ingredients
           div#add-ingredient
@@ -32,5 +35,12 @@ block content
             input#instruction-input(placeholder="Add an instruction here")
             ul#instruction-list
             input#instruction-form-input(name='instructions' style="display: none;")
+
+          //- Description
+          div.form-group
+            label(for='description') Description:
+            input#email.form-control(type='text', placeholder='Describe!' name='description')
+
+
 
           input(type="button" onclick="validateForm()" value="Submit")

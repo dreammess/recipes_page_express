@@ -8,7 +8,7 @@ block content
 					h2= category
 					a(href='/') Home
 					br
-					ul
+					ul.list-style
 						each item, index in items
 							a(href=`/recipes/${category}/${index}`)= item.title
 							br

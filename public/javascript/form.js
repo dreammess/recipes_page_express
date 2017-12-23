@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		for (let i = 0; i < kraken.getInstructions().length; i++) {
 			// Update list to reflect new array
 			var li = document.createElement('li');
-			li.innerHTML = instructions[i] +
+			li.innerHTML = kraken.getInstructions()[i] +
 			"<button type='button' class='delete-button'>Delete</button>" +
 			"<button type='button' class='edit-button'>Edit</button>";
 			instructionList.append(li);
@@ -189,32 +189,3 @@ function validateForm() {
     // }
 }
 
-
-
-
-
-
-//Remove & Edit Button
-
-	// ingredientList.addEventListener('click', (e) => {
-	// 	if (e.target.className == 'delete-button') {
-	// 		let li = event.target.parentNode;
-	// 		ingredientList.removeChild(li);
-	// 		var liText = li.textContent.replace("DeleteEdit", "");
-	// 		ingredients = ingredients.filter(x => x !== liText);
-	// 	} else if (e.target.className == 'edit-button') {
-	// 		let li = event.target.parentNode;
-	// 		var liText = li.textContent.replace("DeleteEdit", "");
-	// 		li.innerHTML = "<input class='save-edit' value='" + liText + "'></input>";
-	// 		document.getElementsByClassName('save-edit')[0].addEventListener('keyup', (e) => {
-	// 			if (e.keyCode == 13) {
-	// 				// BUG: if 2 items are the same, it will change both
-	// 				ingredients = ingredients.map(x => (x == liText) ? e.target.value:x);
-	// 				console.log(e.target.value);
-	// 				li.innerHTML = e.target.value +
-	// 					"<button type='button' class='delete-button'>Delete</button>" +
-	// 					"<button type='button' class='edit-button'>Edit</button>";
-	// 			}
-	// 		});
-	// 	} 
-	// });

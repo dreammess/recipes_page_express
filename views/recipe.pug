@@ -2,18 +2,33 @@ extends layout.pug
 
 block content
 	div.container.main.container.text-xs-center
-		div.row
+		div.row.d-flex.flex-xs-nowrap
 			div.col-xs-12
-				section#content
-					h2= title
-					a(href='/') Home
-					br
-					a(href=`/recipes/${category}`)= category
-
-					ul
-						each ingredient in ingredients
-							li= ingredient
-
-					ul
-						each instruction in instructions
-							li= instruction
+				a.redirect(href='/') Home
+				a.redirect(href=`/recipes/${category}`)= category
+			div.col-xs-12
+				h2= title
+				img(src='/static/images/raspberry-2023404_1920.jpg' width='1000' height='700' alt='raspberries')
+			div.col-xs-4
+				h4.display-inline= 'Rating: '
+				p.display-inline= rating
+			div.col-xs-4
+				h4.display-inline= 'Preparation Time: '
+				p.display-inline= prep_time
+			div.col-xs-4
+				h4.display-inline= 'Cooking Time: '
+				p.display-inline= cook_time
+			div.col-xs-4
+				h3.ingredients-header= 'Ingredients:'
+				ul.list-style.text-xs-left
+					each ingredient in ingredients
+						li= ingredient
+			br
+			div.col-xs-8
+				h3.instructions-header='Instructions:'
+				ul.list-style
+					each instruction in instructions
+						li= instruction
+				br
+				h3.instructions-header='About:'
+				p= description
