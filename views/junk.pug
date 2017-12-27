@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+	div.container.main.container.text-xs-center
+		div.row
+			div.col-xs-12
+				section#content
+					a(href='/') Home
+					br
+					ul.list-style
+						each recipe, index in recipes
+							p=recipe.title

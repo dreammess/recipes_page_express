@@ -38,7 +38,7 @@ const RecipeSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
-});
+}); 
 
 
 var Recipe = mongoose.model('Recipe', RecipeSchema);

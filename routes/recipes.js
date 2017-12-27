@@ -55,13 +55,35 @@ router.post('/add', (req, res) => {
 	// res.render('add');
 })
 
+router.get('/show', (req, res) => {
+	Recipe.find((err, recipes) => {
+		if (err) return console.error(err);
+		console.log(recipes);
+		res.render('junk', {recipes});
+		// return res.json(recipes);
+
+
+	})
+});
+
 // Category Splash Page: Contains a list of recipes
 // belonging to the given category.
 
 router.get('/:category/', (req, res) => {
-	const category = req.params.category;
-	const items = recipes[category];
-	res.render('recipe_menu', {items, category})
+	var category = req.params.category;
+
+	Recipe.find({ category: category}, (err, recipes) => {
+		if (err) return console.error(err);
+		var items = recipes;
+		res.render('recipe_menu', {items, category})
+		
+		// console.log(recipes);
+		// res.render('junk', {recipes});
+		// return res.json(recipes);
+
+
+	});
+
 });
 
 // Recipe: individual recipe page.
